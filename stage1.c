@@ -18,8 +18,13 @@ void stage1(char playerGrid[][10], struct initialShip arr[]){
         }
         printf("\n");
 
-        printf("\nEnter your move: ");
-        scanf("%d %d %c %c", &row, &col, &direction, &ship);
+        do{
+          printf("\nEnter your move: ");
+          scanf("%d %d %c %c", &row, &col, &direction, &ship);
+          fflush(stdin);
+        }
+        while((row > 9 || col > 9 || row < 0 || col < 0) && ( direction != 'H' || direction != 'V') && printf("Wrong Move. Try Again\n"));
+
 
         for(j = 0; j < 5; j++){
             if(arr[j].symbol == ship)    break;  // J IS THE SHIP FOUND IN THE STRUCTURE
@@ -29,7 +34,7 @@ void stage1(char playerGrid[][10], struct initialShip arr[]){
             continue;
         }
         if (flag[j] == 1){
-            printf("You have used this Ship already.. Try Again \n");
+            printf("You have already used this Ship.. Try Again \n");
             continue;
         }
 

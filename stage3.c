@@ -19,9 +19,12 @@ void stage3(char playerGrid[][10], char computerGrid[][10]){
         total_chances++;
         if(total_hits_player < 5){
             // printBothGridTogether(playerGrid, computerGridNew, 1, 1);
-            printf("Enter the cordinate (x,y) where you want to attack: ");
-            scanf("%d%d", &x, &y);
-            // printf("%d %d\n", x, y);
+            do{
+                printf("Enter the cordinate (x,y) where you want to attack: ");
+                scanf("%d%d", &x, &y);
+            }
+            while((x > 9 || y > 9 || x < 0 || y < 0) && printf("Wrong Move. Try Again\n"));
+                // printf("%d %d\n", x, y);
             if(computerGrid[x][y] != '0'){
               temp = computerGrid[x][y];
               computerGridNew[x][y] = computerGrid[x][y];
@@ -56,9 +59,12 @@ void stage3(char playerGrid[][10], char computerGrid[][10]){
 
         if(total_hits_comp < 5){
             // printBothGridTogether(playerGrid, computerGridNew, 1, 1);
-            srand((unsigned) time(&t));
-            x = rand()%10;
-            y = rand()%10;
+            do{
+                srand((unsigned) time(&t));
+                x = rand()%10;
+                y = rand()%10;
+            }
+            while(playerGrid[x][y] == 'M' && playerGrid[x][y] == 'X');
             // printf("%d %d\n", x, y);
             if(playerGrid[x][y] != '0' && playerGrid[x][y] != 'X' && playerGrid[x][y] != 'M'){
                 temp = playerGrid[x][y];
